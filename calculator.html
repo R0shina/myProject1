@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Annual Leave Calculator</title>
+  <meta name="description" content="A simple annual leave calculator">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      line-height: 2;
+      margin: 0 auto;
+      max-width: 80%;
+      padding: 0;
+    }
+
+    p, input, select {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 20px;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    input, select {      
+      border: none;
+      border-bottom: 1px solid #ccc;
+    }
+
+    #a {
+      line-height: 1.5;
+    }
+
+    #output {
+      font-weight: bold;
+      font-size: 25px;
+    }
+
+    #s p, #s input {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    #s p:first-child {
+      margin-bottom: 5px;
+    }
+
+    @media only screen and (min-width: 992px) {
+      p, input, select {
+        font-size: 40px;
+      }
+
+      #s p, #s input {
+        font-size: 18px;
+      }
+
+      #output {
+        font-size: 45px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <p id="q">
+    How much leave will I have on
+    <input type="date" id="future-date">
+    if my last payslip ending
+    <input type="date" id="last-payslip-date">
+    said I had
+    <input type="text" size="3" id="last-payslip-hours">
+    hrs and I plan to use
+    <input type="text" size="2" id="days-before-then">
+    days before then?
+  </p>
+  <p id="a">
+    You'll have
+    <span id="output">---</span>
+    days!
+  </p>
+  <div id="s">
+    <p>
+      <small>
+        Based on
+        <input value="20" type="text" size="2" id="annual-leave-days-per-year">
+        annual leave days per year, a
+        <input value="38" type="text" size="2" id="work-hours-per-week">
+        hour (5 day) work week, and
+        <input value="365.25" type="text" size="5" id="days-per-year">
+        days per year.
+      </small>
+    </p>
+    <p>
+      <small>
+        Nothing official, could be wrong, use at own risk.
+      </small>
+    </p>
+    <p>
+      <a href="https://www.buymeacoffee.com/benmccallum" target="_blank">
+        <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" >
+      </a>
+    </p>
+  </div>
+  <script>
+    const daysPerYear = document.getElementById('days-per-year');
+    const getDaysPerYear = () => parseInt(daysPerYear.value);
+    const workHoursPerWeek = document.getElementById('work-hours-per-week');
+    const getWorkHoursPerWeek = () => parseInt(workHoursPerWeek.value);
+    const annualLeaveDaysPerYear = document.getElementById('annual-leave-days-per-year');
+    const getAnnualLeaveDaysPerYear = () => parseInt(annualLeaveDaysPerYear.value);
+    const getWorkHoursPerDay = () => getWorkHoursPerWeek() / 5;
+
+    const futureDate = document.getElementById('future-date');
+    const lastPayslipDate = document.getElementById('last-payslip-date');
+    const lastPayslipHours = document.getElementById('last-payslip-hours');
+    const daysBeforeThen = document.getElementById('days-before-then');
+
+    const output = document.getElementById('output');
+    const calculate = () => {
+      let finalResult = '---';
+      try
+      {
+        const daysBetween = (futureDate.valueAsNumber - lastPayslipDate.valueAsNumber) / (24 * 3600 * 1000);
+        const daysEarnt = daysBetween * (getAnnualLeaveDaysPerYear() / getDaysPerYear());
+        const daysGot = parseInt(lastPayslipHours.value) / getWorkHoursPerDay();
+        const daysUsed = parseInt(daysBeforeThen.value);
+        const result = daysGot + daysEarnt - daysUsed;
+        const resultRounded = Math.round(result * 100) / 100;
+        if (!Number.isNaN(resultRounded)) {
+          finalResult = resultRounded;
+        }
+      }
+      catch 
+      {
+        
+      }
+      output.innerText = finalResult;
+    };
+
+    const inputs = document.getElementsByTagName('input');
+    [...inputs].forEach(i => {
+      document.addEventListener('input', calculate);
+    });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-81824436-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-81824436-1');
+  </script>
+</body>
+</html>

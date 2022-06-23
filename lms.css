@@ -1,0 +1,59 @@
+body{
+    background-color: rgb(80, 71, 71)  ;
+}
+
+.navbar{
+    /* height: 90px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    cursor: pointer;
+    word-spacing: 10%;
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+
+}
+.nav-list{
+    width: 1520px;
+    display: flex;
+    align-items: center;
+     background-color: rgb(80, 71, 71);
+  
+}
+.nav-list li{
+    margin-left: 10px;
+    list-style: none;
+    padding: 26px 30PX;
+    cursor:pointer;
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+.nav-list li a{
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    font-size: 20px;
+    height: 25px;
+    line-height: 25px;
+    text-align: left;
+    white-space: nowrap;
+    cursor: pointer;
+    color: #fafafa;
+    -webkit-transition: color .2s;
+    transition: color .2s;
+    padding: 0 17px;  
+    cursor:pointer;
+   
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+
+
+}
+.nav-list li a:hover{
+    color: rgb(139, 141, 10);
+
+}
+.user-area .dropdown {
+      text-align: left;
+}

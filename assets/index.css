@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Codystar:wght@300&family=Cormorant+Garamond:ital,wght@1,300&family=Inspiration&display=swap');
+*{
+    margin: 0px;
+    padding: 0;
+}
+.heading-box{
+    background-color: #f5f7f8;    
+    height: 300px;
+    width: 1400px;
+    cursor:pointer;
+
+    
+}
+html{
+    scroll-behavior: smooth;
+    cursor:pointer;
+    overflow: scroll;
+    position:fixed;
+}
+.heading{
+    justify-content: center;
+    padding: 2px;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font-size: 100%;
+    cursor:pointer;
+}
+.logo{
+    /* width: 20%; */
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
+    color: whitesmoke;
+	font-size: 20px;
+	/* user-select: none; */
+    border:2px dotted ;
+    border-radius: 100px;
+    font-family: 'Codystar', cursive;
+    padding: 4px;
+    margin-left: 100px;
+    cursor:pointer;
+    
+}    
+/* .logo img{
+    width: 7%;
+    border-radius: 60px;
+    border: 3px solid whitesmoke;
+    margin: 5px;
+
+} */
+.navbar{
+    /* height: 90px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    cursor: pointer;
+    word-spacing: 10%;
+
+}
+.nav-list{
+    width: 1700px;
+    display: flex;
+    align-items: center; 
+     background-color: rgb(249, 239, 239);
+}
+.nav-list li{
+    margin-left: 10px;
+    list-style: none;
+    padding: 26px 30PX;
+    cursor:pointer;
+
+}
+.nav-list li a{
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    font-size: 20px;
+    height: 25px;
+    line-height: 25px;
+    text-align: left;
+    white-space: nowrap;
+    cursor: pointer;
+    color: #fafafa;
+    -webkit-transition: color .2s;
+    transition: color .2s;
+    padding: 0 17px;  
+    cursor:pointer;
+}
+.nav-list li a:hover{
+    color: rgb(20, 1, 24);
+
+}
+
+
+
+.menutoggle {
+    background-color: transparent;
+    color: #99abb4!important;
+    cursor: pointer;
+    font-size: 1em;
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+    display: block;
+    text-align: right
+}
