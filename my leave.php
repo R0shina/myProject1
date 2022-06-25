@@ -1,19 +1,20 @@
 <?php
 require('top.inc.php');
-//*$i=2;
-//$eid=$_SESSION['USER_ID'];
-//$query="select `assign_leave` t1 join `employee` t2 on t1.assign_to=t2.user_id where t2.user_id=$EMP_ID";
-//$res=mysqli_query($conn,$query);
-//$count=mysqli_num_rows($res);
-//if ($count>0)
-//{
-//   while($row=mysqli_fetch_array($res));
-//}
+$cur_year = date("Y");
+$prev_year =$cur_year-1;
+$next_year =$cur_year+1;
 
-//$query="select `assign_leave` t1 join `employee` t2 on t1.assign_to=t2.user_id where t2.user_id=$user_id";
-//$res=mysqli_query($conn,$query);
-//$count=mysqli_num_rows($res);
-//
+function getTotalLeaveCountOfYear($sick_leave_type_id, $user_id){
+   global $con;
+    $count = 0;
+    $sql = "SELECT COUNT(*) as count FROM `leave` WHERE leave_id = $sick_leave_type_id AND employee_id = $user_id";
+    $res = mysqli_query($con, $sql);
+    while($row = mysqli_fetch_assoc($res)) {
+        $count = $row['count'];
+    }
+    return $count;
+}
+
 
 ?>
 <div class="content pb-0">
@@ -36,12 +37,19 @@ require('top.inc.php');
                                  <thead style="width:100%">
                                     <tr>
                               <th width="8%">Sick Leave / Remaining Leave</th>
-                              <th width="8%">Home / Remaining Leave</th>
+                              <th width="8%">Vacation / Remaining Leave</th>
+                              <th width="8%">Maternity-Paternity / Remaining Leave</th>
+                              <th width="8%">Other/ Remaining Leave</th>
+
+
 									  
                                     </tr>
                                     <tr>
-                                       <td>10/10</td>
-                                       <td>20/20</td>
+                                       <td><?php $user_id = $_SESSION["USER_ID"]; echo getTotalLeaveCountOfYear(1, $user_id)?>/10</td>
+                                       <td><?php $user_id = $_SESSION["USER_ID"]; echo getTotalLeaveCountOfYear(2, $user_id)?>/20</td>
+                                       <td><?php $user_id = $_SESSION["USER_ID"]; echo getTotalLeaveCountOfYear(4, $user_id)?>/20</td>
+                                       <td><?php $user_id = $_SESSION["USER_ID"]; echo getTotalLeaveCountOfYear(6, $user_id)?>/20</td>
+                                       <!-- <td>20/20</td> -->
                       </tr>
 
                                  </thead>
@@ -54,4 +62,8 @@ require('top.inc.php');
                </div>
             </div>
 		  </div>
+
+<?php
+require('footer.inc.php');
+?>
  
