@@ -1,6 +1,7 @@
 <?php
 
 require('top.inc.php');
+include "./file.php";
 
 if(isset($_GET['type']) && $_GET['type']=='delete' && isset($_GET['id'])){
 	$id=mysqli_real_escape_string($con,$_GET['id']);
@@ -64,30 +65,12 @@ $res=mysqli_query($con,$sql);
 									   <td><?php echo $row['leave_to']?></td>
 									   <td><?php 
 
-									//    if (isset($_POST['submit'])){
-									// 	$date1=$_POST['date1'];
-									// 	$date2=$_POST['date2'];
+											$date1 = $row['leave_from'];
+											$date2 = $row['leave_to'];
+											echo dateDifference($date1, $date2);
 
-									// 	$date1= strtotime($date1);
-									// 	$date2= strtotime($date2);
+											// echo $diff;
 
-									// 	$diff =($date1-$date2);
-									// 	echo $diff.'days';
-
-									//    }
-									   $leave_to = time();
-									    $leave_from=strtotime("2022-06-10");
-									   $interval=$leave_to-$leave_from;
-									     echo floor($interval/(60*60*24))."\n";
-									   
-										// $date1 = $row('leave_from');
-										// $timestamp = strtotime($date1);
-										// echo date('d',$timestamp)
-
-									   //$day_diff = day_diff($leave_to, $leave_from);
-									   //$date1 =($row['leave_from']);
-									 			//$date2 = ($row['leave_to']);
-												//echo $date1-$date2
 
 											
 									   ?></td>
@@ -109,7 +92,7 @@ $res=mysqli_query($con,$sql);
 											<option value="3">Rejected</option>
 										   </select>
 										   <?php } ?>
-									   </td>
+									   </td> 
 									   <td>
 									   <?php
 									   if($row['leave_status']==1){ ?>
